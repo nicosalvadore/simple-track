@@ -3,7 +3,7 @@
 @section('title', 'Items')
 
 @section('content')
-<h2>Dashboard - {{ $owner }}</h2>
+<h2 class="display-2">Dashboard - {{ $owner }}</h2>
 <p><a class="btn btn-primary" href="/{{ $owner }}/items/create" role="button">New item</a></p>
 
 <table class="table">
@@ -26,7 +26,7 @@
                   @csrf
                   <input type="number" name="quantity" value="{{ $item['item']->default_quantity }}"> {{ $item['item']->unit }}
                   <input type="hidden" name="item_id" value="{{ $item['item']->id }}">
-                  <input type="submit" value="add" />
+                  <input class="btn btn-success" type="submit" value="add" />
               </form>
           </td>
       </tr>

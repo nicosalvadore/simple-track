@@ -3,7 +3,7 @@
 @section('title', 'Items')
 
 @section('content')
-<h2>New Item</h2>
+<h2 class="display-2">New Item</h2>
 <form action="/{{ $owner }}/items" method="post">
   @csrf
   <div class="form-group row">

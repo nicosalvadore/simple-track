@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,8 @@ use App\Http\Controllers\ItemController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'home']);
+Route::post('/', [HomeController::class, 'go']);
 
 Route::get('/{owner}', [ItemController::class, 'index']);
 Route::get('/{owner}/items', [ItemController::class, 'index']);
