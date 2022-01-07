@@ -30,12 +30,6 @@ class ItemService
         $items = self::all($owner);
         foreach($items as $item) {
             $sum = $item->transactions->sum('quantity');
-
-            // $quantity = 0;
-            // foreach($transactions as $transaction) {
-            //     $quantity += $transaction->quantity;
-            // }
-
             $itemsQuantity[] = ["item" => $item, "sum" => $sum];
         }
         return $itemsQuantity;

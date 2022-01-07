@@ -27,6 +27,7 @@
                   <input type="number" name="quantity" value="{{ $item['item']->default_quantity }}"> {{ $item['item']->unit }}
                   <input type="hidden" name="item_id" value="{{ $item['item']->id }}">
                   <input class="btn btn-success" type="submit" value="add" />
+                  <a class="btn btn-info" href="/{{ $owner }}/items/{{ $item['item']->id }}/stats" role="button">Stats</a>
               </form>
           </td>
       </tr>

@@ -8,28 +8,26 @@ use App\Models\Item;
 
 class TransactionService
 {
-    public static function allForItem($owner, $item_id)
+    public static function allForItem($item_id)
     {
-        $item = Item::find($item_id);
-        if($item->owner == $owner) {
-            return $item->transactions;
-        } else {
-            return abort(401);
-        }
+        $transactions = Transaction::where('item_id', $item_id)->get();
+        return $transactions;
     }
 
-    public static function store($owner, Request $request)
+    public static function allForItemSince($item_id, $since)
+    {
+        $transactions = Transaction::where('item_id', $item_id)->where('created_at', '>=', $since);
+        return $transactions;
+    }
+
+    public static function store(Request $request)
     {
         $item = Item::find($request->item_id);
-        if($item->owner == $owner) {
-            $transaction = new Transaction();
-            $transaction->quantity = $request->quantity;
-            $transaction->item_id = $request->item_id;
-            $transaction->save();
-        } else {
-            return abort(401);
-        }
 
+        $transaction = new Transaction();
+        $transaction->quantity = $request->quantity;
+        $transaction->item_id = $request->item_id;
+        $transaction->save();
 
     }
 }

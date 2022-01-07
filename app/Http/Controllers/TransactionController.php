@@ -9,7 +9,7 @@ class TransactionController extends Controller
 {
     public static function store($owner, Request $request)
     {
-        TransactionService::store($owner, $request);
+        TransactionService::store($request);
         return redirect('/'.$owner);
     }
 }
