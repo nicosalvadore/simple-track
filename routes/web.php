@@ -17,6 +17,9 @@ use App\Http\Controllers\StatController;
 |
 */
 
+\Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/', [HomeController::class, 'home']);
 Route::post('/', [HomeController::class, 'go']);
 
@@ -28,3 +31,4 @@ Route::post('/{owner}/items', [ItemController::class, 'store']);
 Route::post('/{owner}/transactions', [TransactionController::class, 'store']);
 
 Route::get('/{owner}/items/{item}/stats', [StatController::class, 'show']);
+

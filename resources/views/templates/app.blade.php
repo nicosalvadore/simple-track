@@ -18,16 +18,54 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+          <!-- Left Side Of Navbar -->
+          <ul class="navbar-nav me-auto">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
+          </ul>
+          <!-- Right Side Of Navbar -->
+          <ul class="navbar-nav ms-auto">
+              <!-- Authentication Links -->
+              @guest
+                  @if (Route::has('login'))
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                      </li>
+                  @endif
+
+                  @if (Route::has('register'))
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                      </li>
+                  @endif
+              @else
+                  <li class="nav-item dropdown">
+                      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                          {{ Auth::user()->name }}
+                      </a>
+
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="{{ route('logout') }}"
+                             onclick="event.preventDefault();
+                                           document.getElementById('logout-form').submit();">
+                              {{ __('Logout') }}
+                          </a>
+
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                              @csrf
+                          </form>
+                      </div>
+                  </li>
+              @endguest
           </ul>
         </div>
       </div>
     </nav>
         <div class="container">
+          <main class="py-4">
             @yield('content')
+          </main>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
