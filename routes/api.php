@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\ItemController;
 
@@ -17,7 +16,6 @@ use App\Http\Controllers\Api\ItemController;
 |
 */
 
-Route::get('/{owner}', [DashboardController::class, 'show']);
 Route::get('/{owner}/items', [ItemController::class, 'index']);
 Route::get('/{owner}/items/create', [ItemController::class, 'create']);
 Route::post('/{owner}/items', [ItemController::class, 'store']);
