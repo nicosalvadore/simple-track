@@ -8,15 +8,15 @@ use App\Http\Controllers\Controller;
 
 class ItemController extends Controller
 {
-    public static function index($owner)
+    public static function index()
     {
-        $items = ItemService::all($owner);
+        $items = ItemService::all();
         return response()->json($items);
     }
 
-    public static function store($owner, Request $request)
+    public static function store(Request $request)
     {
-        ItemService::store($owner, $request);
+        ItemService::store($request);
         return response('created', 201);
     }
 }

@@ -17,14 +17,13 @@ use App\Http\Controllers\StatController;
 |
 */
 
-Route::get('/', [HomeController::class, 'home']);
-Route::post('/', [HomeController::class, 'go']);
+Auth::routes();
+Route::get('/', [ItemController::class, 'index']);
+Route::get('/items', [ItemController::class, 'index']);
+Route::get('/items/create', [ItemController::class, 'create']);
+Route::post('/items', [ItemController::class, 'store']);
 
-Route::get('/{owner}', [ItemController::class, 'index']);
-Route::get('/{owner}/items', [ItemController::class, 'index']);
-Route::get('/{owner}/items/create', [ItemController::class, 'create']);
-Route::post('/{owner}/items', [ItemController::class, 'store']);
+Route::post('transactions', [TransactionController::class, 'store']);
 
-Route::post('/{owner}/transactions', [TransactionController::class, 'store']);
+Route::get('/items/{item}/stats', [StatController::class, 'show']);
 
-Route::get('/{owner}/items/{item}/stats', [StatController::class, 'show']);

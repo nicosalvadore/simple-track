@@ -7,14 +7,23 @@ use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
-    public static function home()
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        $owner = Str::lower(Str::random(6));
-        return view('home',['owner' => $owner]);
+        $this->middleware('auth');
     }
 
-    public static function go(Request $request)
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
     {
-        return redirect('/'.$request->owner);
+        return view('home');
     }
 }

@@ -3,8 +3,8 @@
 @section('title', 'Items')
 
 @section('content')
-<h2 class="display-2">Dashboard - {{ $owner }}</h2>
-<p><a class="btn btn-primary" href="/{{ $owner }}/items/create" role="button">New item</a></p>
+<h2 class="display-2">Dashboard</h2>
+<p><a class="btn btn-primary" href="/items/create" role="button">New item</a></p>
 
 <table class="table">
   <thead>
@@ -22,12 +22,12 @@
           <td>{{ $item['item']->name }}</td>
           <td>{{ $item['sum'] }} {{ $item['item']->unit }}</td>
           <td>
-              <form action="/{{ $item['item']->owner }}/transactions" method="post">
+              <form action="/transactions" method="post">
                   @csrf
                   <input type="number" name="quantity" value="{{ $item['item']->default_quantity }}"> {{ $item['item']->unit }}
                   <input type="hidden" name="item_id" value="{{ $item['item']->id }}">
                   <input class="btn btn-success" type="submit" value="add" />
-                  <a class="btn btn-info" href="/{{ $owner }}/items/{{ $item['item']->id }}/stats" role="button">Stats</a>
+                  <a class="btn btn-info" href="/items/{{ $item['item']->id }}/stats" role="button">Stats</a>
               </form>
           </td>
       </tr>
