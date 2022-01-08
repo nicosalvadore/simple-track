@@ -15,10 +15,10 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('owner');
             $table->string('name');
             $table->string('unit');
             $table->integer('default_quantity');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

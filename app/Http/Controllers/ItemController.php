@@ -7,20 +7,20 @@ use App\Services\ItemService;
 
 class ItemController extends Controller
 {
-    public static function index($owner)
+    public static function index()
     {
-        $items = ItemService::allWithTransactions($owner);
-        return view('items.index', ['items' => $items, 'owner' => $owner]);
+        $items = ItemService::allWithTransactions();
+        return view('items.index', ['items' => $items]);
     }
 
-    public static function create($owner)
+    public static function create()
     {
-        return view('items.create', ['owner' => $owner]);
+        return view('items.create');
     }
 
-    public static function store($owner, Request $request)
+    public static function store(Request $request)
     {
-        ItemService::store($owner, $request);
-        return redirect('/'.$owner);
+        ItemService::store($request);
+        return redirect('/');
     }
 }

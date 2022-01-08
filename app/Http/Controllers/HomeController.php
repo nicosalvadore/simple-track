@@ -26,15 +26,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-    public static function home()
-    {
-        $owner = Str::lower(Str::random(6));
-        return view('home',['owner' => $owner]);
-    }
-
-    public static function go(Request $request)
-    {
-        return redirect('/'.$request->owner);
-    }
 }

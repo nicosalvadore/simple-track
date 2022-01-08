@@ -7,9 +7,9 @@ use App\Services\TransactionService;
 
 class TransactionController extends Controller
 {
-    public static function store($owner, Request $request)
+    public static function store(Request $request)
     {
         TransactionService::store($request);
-        return redirect('/'.$owner);
+        return redirect('/');
     }
 }
