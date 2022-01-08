@@ -18,12 +18,15 @@ use App\Http\Controllers\StatController;
 */
 
 Auth::routes();
-Route::get('/', [ItemController::class, 'index']);
-Route::get('/items', [ItemController::class, 'index']);
-Route::get('/items/create', [ItemController::class, 'create']);
-Route::post('/items', [ItemController::class, 'store']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [ItemController::class, 'index']);
+    Route::get('/items', [ItemController::class, 'index']);
+    Route::get('/items/create', [ItemController::class, 'create']);
+    Route::post('/items', [ItemController::class, 'store']);
 
-Route::post('transactions', [TransactionController::class, 'store']);
+    Route::post('transactions', [TransactionController::class, 'store']);
 
-Route::get('/items/{item}/stats', [StatController::class, 'show']);
+    Route::get('/items/{item}/stats', [StatController::class, 'show']);
+});
+
 
